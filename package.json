@@ -1,0 +1,24 @@
+{
+  "name": "electron-with-express",
+  "description": "Demonstrates spawning Express from Electron and using it to serve content",
+  "version": "0.9.0",
+  "main": "main.js",
+  "authors": [
+    "Frank Hale <frankhale@gmail.com>"
+  ],
+  "license": "GPL-3.0",
+  "private": true,
+  "scripts": {
+    "start": ".\\node.exe start-electron.js"
+  },
+  "dependencies": {
+    "jquery": "*",
+    "keymaster": "*",
+    "lodash": "*",
+    "request": "*",
+    "strip": "*"
+  },
+  "devDependencies": {
+    "electron": "1.8.3"
+  }
+}
