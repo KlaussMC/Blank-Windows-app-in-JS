@@ -51,11 +51,13 @@
 </head>
 
 <body>
+  <script>window.addEventListener("keydown", e => e.keyCode == "116"?window.location.reload():console.log())</script>
+
   <div id="loading">
     <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
   </div>
   <div id="serverLog"></div>
-  <webview id="expressApp" class="expressApp"></webview>
+  <iframe id="expressApp" class="expressApp" style="border: none;"></iframe>
 
   <script>
     window.$ = window.jQuery = require("./node_modules/jquery/dist/jquery.min.js");
@@ -119,8 +121,8 @@
           clearInterval(checkServerRunning);
         }
       });
-    }, 1000);
-  </script>
+  }, 200);
+</script>
 </body>
 
 </html>

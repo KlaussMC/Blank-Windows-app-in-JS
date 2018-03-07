@@ -1,0 +1,10 @@
+extends layout
+
+block content
+    script(src="src/p5.js")
+    script(src="src/index.js")
+    script(src="src/player.js")
+    script(src="src/obstacle.js")
+    script(src="src/base.js")
+
+    script window.addEventListener("keydown", e => e.keyCode == "116"?window.location.reload():console.log())

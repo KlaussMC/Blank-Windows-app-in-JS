@@ -1,8 +1,40 @@
+* {
+    --accent: #910f14;
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+}
+
 body {
-  padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background: #111;
+  overflow: hidden;
 }
 
 a {
   color: #00B7FF;
+}
+
+canvas {
+    width: 100vw;
+    height: 100vh;
+}
+
+.button {
+    display: block;
+    width: 20vw;
+    height: 15vh;
+    text-align: center;
+    background: var(--accent);
+    color: #111;
+    font-size: 15pt;
+    padding-top: calc(7.5vh - 7.5pt);
+    text-decoration: none;
+    top: 42.5vh;
+    left: 40vw;
+    position: relative;
+}
+canvas {
+    width: 100vw;
+    height: 100vw;
 }
