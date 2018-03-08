@@ -1,0 +1,50 @@
+.end {
+    display: block;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+}
+
+.result {
+    color: #aaa;
+    animation: win 3s infinite;
+    width: 100vw;
+    text-align: center;
+    font-family: "Sigmar One";
+    font-size: 10vh;
+    padding-top: 5vh;
+}
+canvas {
+    display: none;
+}
+
+form {
+    width: 50vw;
+    left: 25vw;
+    position: relative;
+}
+form button {
+    width: 100%;
+    background: var(--accent);
+    border: none;
+    display: block;
+    height: 100px;
+    font-family: "Sigmar One";
+    font-size: 30pt;
+    color: #eee;
+    margin-top: 10vh;
+}
+button:hover {
+    cursor: pointer;
+}
+@keyframes win {
+    0% {
+        color: #d00;
+    }
+    50% {
+        color: #0d0;
+    }
+    100% {
+        color: #d00;
+    }
+}

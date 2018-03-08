@@ -1,6 +1,14 @@
 var write = str => text(str, width - 100, 25)
+var paused = false;
 
-let p, b, name = "Jacob", p2, b2;
+let p, b, p2, b2, name, score;
+function preload() {
+    bullet = loadImage('../res/projectile.png');
+    pgraphic = loadImage('../res/player.png');
+
+    name = document.querySelector("#un").value;
+}
+
 function setup() {
     p = new player(width / 2, height / 2, name)
     b = new base(name)
@@ -12,7 +20,8 @@ function setup() {
     background(17);
 }
 function draw() {
-    background(25);
+    background(25, 100);
+    push();
 
     b.show();
     b.update();
@@ -30,17 +39,32 @@ function draw() {
         p.angle-=0.125;
     else if (keyIsDown(65))
         p.angle+=0.125;
-    else if (keyIsDown(87))
+
+    if (keyIsDown(87)) {
         p.dir = 1;
-    else if (keyIsDown(83))
+    } else if (keyIsDown(83)) {
         p.dir = -1;
-    else if (!keyIsDown(87) && !keyIsDown(83))
+    } else if (!keyIsDown(87) && !keyIsDown(83))
         p.dir = 0;
 
     if (keyIsDown(32))
         p.shoot()
+
+    pop();
 }
+function togglePause() {
+    paused = !paused;
+    paused?noLoop():loop();
+}
+
+window.addEventListener("keydown", e => { if (e.keyCode == 27) togglePause() } );
 
 function windowResized() {
   resizeCanvas(window.innerWidth, window.innerHeight);
+}
+
+function endGame() {
+    document.querySelector("head").innerHTML += "<link rel='stylesheet' href='css/results.css'>"
+    document.querySelector(".end").style.display = "block"
+    togglePause();
 }
