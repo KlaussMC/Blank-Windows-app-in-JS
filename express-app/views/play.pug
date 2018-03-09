@@ -1,25 +1,35 @@
 extends layout
 
 block content
+    script(src="src/socket.io.js")
+    script var script; window.addEventListener("load", () => socket = io.connect("http://localhost"))
+    
+    script.
+        socket.on("sendStats", () => submitValues())
+    
     script(src="src/p5.js")
     script(src="src/index.js")
     script(src="src/player.js")
     script(src="src/obstacle.js")
     script(src="src/base.js")
-
-    script window.addEventListener("keydown", e => e.keyCode == "116"?window.location.reload():console.log())
     .end(style="display: none;")
         h1.result Game Over
 
-        script.
-            document.querySelector("#score").innerHTML = score
-            document.querySelector("#hlth").innerHTML = p1.health
-            document.querySelector("#money").innerHTML = money
-
-        form(action="/gameScore", method="post")
-            input(value=data.name, name="name")#un
+        form(action="/gameScores", method="post")
+            input(type="hidden", value=data.name, name="name")#un
             input(type="hidden", name="score")#score
             input(type="hidden", name="health")#hlth
-            input(type="hidden", name="money")#money
 
             button(type="submit") Continue
+            
+            script.
+                function submitValues() {
+                    setValues()
+                    this.form.submit();
+                }
+
+        script.
+            function setValues() {
+                document.querySelector("#score").value = score
+                document.querySelector("#hlth").value = p.health
+            }

@@ -2,44 +2,44 @@
 const express = require("express"),
   router = express.Router(),
   path = require("path"),
-  fs = require("fs")
+  fs = require("fs"),
+  logmaker = require("logmaker"),
+  socket = require("./socket.js")
+
+logmaker.enable()
 
 let title = "Battle", data = JSON.parse(fs.readFileSync("./express-app/me.json"));
-
-let scores = {
-    p1: {
-        score: null,
-        health: null,
-        money: null
-    },
-    p2: {
-        score: null,
-        health: null,
-        money: null
-    }
-}
 
 //GET home page.
 router.get("/", function(req, res) {
   res.render("index", { title: title });
 });
 router.get("/play", function(req, res) {
-  res.render("play", { title: title, data });
+  res.render("play", { title: title, data: data });
 });
-router.get("/gameScores", function(req, res) {
-  res.render("gameScores", { title: title, data });
-});
-router.post("/play", function(req, res) {
+router.post("/gameScores", function(req, res, next) {
   setScores(req.body);
-  res.render("play", {
+  let scores = JSON.parse(fs.readFileSync("./express-app/scores.JSON"));
+  logmaker.log(scores);
+  res.render("gameScores", {
       title: title,
       data: JSON.parse(fs.readFileSync("./express-app/me.json")),
-      scores
+      scores: scores
   });
+  socket.broadcast.emit("sendStats", null);
 });
 
 var setScores = input => {
-    data.name == input.username? () => {scores.p1.scores = input.score; scores.p1.health = input.health; scores.p1.money = input.money;  }() : () => {scores.p2.scores = input.score; scores.p2.health = input.health; scores.p2.money = input.money; }();
+    if (input.name == data.name) {
+        let newData = JSON.parse(fs.readFileSync("./express-app/scores.JSON"))
+        newData.p1=input
+        fs.writeFileSync("./express-app/scores.JSON", JSON.stringify(newData))
+    } else {
+        let newData = JSON.parse(fs.readFileSync("./express-app/scores.JSON"))
+        nweData.p2=input
+        fs.writeFileSync("./express-app/scores.JSON", JSON.stringify(newData))
+        console.log(newData)
+    }
 }
 
 module.exports = router;

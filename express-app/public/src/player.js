@@ -21,7 +21,6 @@ class player {
             imageMode(CENTER);
             image(pgraphic, 0, 0, this.health / 2, this.health / 2);
             pop();
-            // ellipse(this.pos.x, this.pos.y, map(this.health, 0, 100, 0, 50), map(this.health, 0, 100, 0, 50))
         } else
             rect(this.pos.x, 0, 5, 5);
     }
@@ -40,12 +39,9 @@ class player {
             if ((this.projectiles[i].pos.x > width || this.projectiles[i].pos.x < 0) || (this.projectiles[i].pos.y > height || this.projectiles[i].pos.x < 0-height))
                 this.projectiles.splice(i, 1);
         }
-        // if (this.name != name) {
-        //     this.shoot();
-        // }
     }
     shoot() {
-        if (frameCount % floor(random(5, 10)) == 0) this.projectiles.push(new projectile(this.pos.x, this.pos.y, this.angle, this.health / 4, this.name));
+        if (frameCount % 5 == 0) this.projectiles.push(new projectile(this.pos.x, this.pos.y, this.angle, this.health / 4, this.name));
     }
     heal() {
         if (frameCount % 30 == 0) this.health++;
@@ -73,13 +69,13 @@ class projectile {
         this.angle += random(-0.03, 0.03);
         this.damage = damage;
         this.name = owner;
+
+        console.log("Pew Pew");
     }
     show() {
-        // fill(255, 0, 0);
-        // ellipse(this.pos.x, this.pos.y, 5, 5);
         push();
         translate(this.pos.x, this.pos.y);
-        rotate(0 - this.angle);
+        rotate(PI - this.angle);
         imageMode(CENTER);
         image(bullet, 0, 0, 10, 10);
         pop();
@@ -93,13 +89,13 @@ class projectile {
             if (!p.dead) {
                 if (dist(this.pos.x, this.pos.y, p.pos.x, p.pos.y) < 1 + (p.health / 2))
                     p.damage(this.damage)
+                    score++;
             }
         } else {
             if (!p2.dead) {
                 if (dist(this.pos.x, this.pos.y, p2.pos.x, p2.pos.y) < 1 + (p2.health / 2)) {
                     p2.damage(this.damage)
                     score++;
-                    
                 }
             }
         }

@@ -1,0 +1,41 @@
+.Scores {
+    font-size: 10vh;
+    line-height: 10vh;
+}
+
+h2 {
+    font-size: 4vh;
+    font-weight: lighter;
+    line-height: 4vh;
+}
+
+.content {
+    padding-left: 25vw;
+    padding-top: 25vh;
+}
+
+button {
+    width: 25vw;
+    position: absolute;
+    left: 37.5vw;
+    background: var(--accent);
+    border: none;
+    height: 10vh;
+    font-size: 4vh;
+    margin-top: 25vh;
+}
+
+table {
+    width: 50vw;
+    position: fixed;
+    left: 25vw;
+    font-weight: lighter;
+}
+table .data {
+    font-family: "Segoe UI";
+}
+
+td {
+    font-size: 3.5vh;
+    text-align: center;
+}

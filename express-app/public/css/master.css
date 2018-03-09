@@ -3,6 +3,14 @@
     box-sizing: border-box;
     margin: 0px;
     padding: 0px;
+
+    color: #eee;
+    font-family: "Sigmar One";
+
+    -webkit-user-select: none;
+    cursor: default;
+
+    outline: none;
 }
 
 body {

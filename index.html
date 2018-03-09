@@ -102,6 +102,9 @@
         _.forEach(lines, (l) => {
           if (l !== "") {
             $serverLog.append(strip(l) + "<br/>");
+            var logmaker = require("logmaker")
+            logmaker.enable();
+            logmaker.log(l);
           }
         });
 

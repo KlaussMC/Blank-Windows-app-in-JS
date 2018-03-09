@@ -1,7 +1,8 @@
 var write = str => text(str, width - 100, 25)
 var paused = false;
 
-let p, b, p2, b2, name, score;
+let p, b, p2, b2, name
+score = 0;
 function preload() {
     bullet = loadImage('../res/projectile.png');
     pgraphic = loadImage('../res/player.png');
@@ -20,7 +21,7 @@ function setup() {
     background(17);
 }
 function draw() {
-    background(25, 100);
+    background(25, 255);
     push();
 
     b.show();
@@ -28,6 +29,9 @@ function draw() {
 
     p.show();
     p.update();
+
+    // prevpos.push({x:p.pos.x, y:p.pos.y})
+    // for (let i in prevpos) i!=prevpos.length?line(prevpos[i].x, prevpos[i].y, prevpos[i+1].x, prevpos[i+1].y):line(prevpos[i].x, prevpos[i].y, p.pos.x, p.pos.y)
 
     b2.show();
     b2.update();
@@ -67,4 +71,5 @@ function endGame() {
     document.querySelector("head").innerHTML += "<link rel='stylesheet' href='css/results.css'>"
     document.querySelector(".end").style.display = "block"
     togglePause();
+    setValues();
 }

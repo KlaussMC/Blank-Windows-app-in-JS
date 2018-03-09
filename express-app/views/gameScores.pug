@@ -1,8 +1,28 @@
 extends layout
 
 block content
-    h1
-
-    h2 Scores:
-
-    .Scores
+    link(rel='stylesheet', href="css/scores.css")
+    
+    .content
+        table
+            thead
+                tr
+                    td
+                    td 
+                        b Player 1
+                    td
+                        b Player 2
+            tbody
+                tr
+                    td
+                        b Score
+                    td.data=scores.p1.score
+                    td.data=scores.p2.score
+                tr
+                    td
+                        b Health
+                    td.data=scores.p1.health
+                    td.data=scores.p2.health
+        
+        form(action="/play", method="get")
+            button(type="submit") Play Again
