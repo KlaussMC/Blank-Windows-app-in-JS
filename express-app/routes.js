@@ -4,7 +4,7 @@ const express = require("express"),
   path = require("path"),
   fs = require("fs"),
   logmaker = require("logmaker"),
-  socket = require("./socket.js")
+  io = require("./socket.js")
 
 logmaker.enable()
 
@@ -26,7 +26,7 @@ router.post("/gameScores", function(req, res, next) {
       data: JSON.parse(fs.readFileSync("./express-app/me.json")),
       scores: scores
   });
-  socket.broadcast.emit("sendStats", null);
+  io.sockets.emit("scores", scores);
 });
 
 var setScores = input => {

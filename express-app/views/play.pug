@@ -5,7 +5,7 @@ block content
     script var script; window.addEventListener("load", () => socket = io.connect("http://localhost"))
     
     script.
-        socket.on("sendStats", () => submitValues())
+        socket.on("scores", () => submitValues())
     
     script(src="src/p5.js")
     script(src="src/index.js")

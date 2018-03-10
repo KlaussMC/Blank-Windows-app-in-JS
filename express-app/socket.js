@@ -20,7 +20,7 @@ function handler (req, res) {
 
 io.on('connection', function (socket) {
   logmaker.log("join");
-  module.exports = socket;
 });
+module.exports = io;
 
 logmaker.log(io)
